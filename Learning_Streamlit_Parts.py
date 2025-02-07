@@ -22,7 +22,7 @@ st.checkbox("Checkbox")
 
 #st.download_button("Download",random_array.rand(3,2),"Download_Data.csv",mime='text/csv')
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file",accept_multiple_files=True)
 
 st.html("<h1>Cheers HTML</h1>")
 
