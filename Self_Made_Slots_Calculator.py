@@ -108,6 +108,12 @@ def display_images(results:list[str]):
         st.image(st.session_state.images[st.session_state.prizes.index(results[1][2])])
         st.image(st.session_state.images[st.session_state.prizes.index(results[2][2])])
 
+def update_screen():
+    st.session_state.bet_amount = st.number_input("Bet Amount:",min_value=0,max_value=st.session_state.balance)
+    display_seed_information()
+    display_images(results)
+    display_balance()
+
 st.title("Fluttering Riches - Slot Machine")
 if 'server_seed' not in st.session_state:
     st.session_state.server_seed = generate_seed()
@@ -127,12 +133,9 @@ if 'server_seed' not in st.session_state:
     st.session_state.nonce = 0
     st.session_state.balance = 10_000
     st.session_state.bet_amount = 0
-    st.session_state.bet_amount = st.number_input("Bet Amount:")
     results:list[list[str]] = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce, st.session_state.prizes)
     st.session_state.nonce += 1
-    display_seed_information()
-    display_images(results)
-    display_balance()
+    update_screen()
     
 
 if st.button("Spin"):
@@ -140,14 +143,11 @@ if st.button("Spin"):
         st.session_state.balance -= st.session_state.bet_amount
         results = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce, st.session_state.prizes)
         st.session_state.nonce += 1
-        st.session_state.bet_amount = st.number_input("Bet Amount:")
-        display_seed_information()
-        display_images(results)
         wins = check_for_wins(results)
         if wins:
             st.success(f"You won with: {', '.join(wins)}!")
             st.session_state.balance += int(calculate_wins(wins,st.session_state.prizes,st.session_state.bet_amount,st.session_state.multipliers))
-        display_balance()
+        update_screen()
             
     else:
         st.error("Insufficient balance!")
