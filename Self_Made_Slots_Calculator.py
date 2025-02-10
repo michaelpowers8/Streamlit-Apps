@@ -133,6 +133,7 @@ if "results" not in st.session_state:
             st.session_state.nonce,
             st.session_state.prizes
         )
+    st.session_state.nonce += 1
 
 def update_screen():
     st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance, key=generate_seed(1_000))
