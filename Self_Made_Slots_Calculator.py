@@ -142,6 +142,8 @@ if "results" not in st.session_state:
     st.session_state.nonce += 1
     update_screen()
 
+st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance)
+
 if st.button("Spin"):
     if st.session_state.balance >= st.session_state.bet_amount:
         st.session_state.balance -= st.session_state.bet_amount
@@ -161,5 +163,4 @@ if st.button("Spin"):
     else:
         st.error("Insufficient balance!")
 
-st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance)
 update_screen()  # Ensure UI updates correctly
