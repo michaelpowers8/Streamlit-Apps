@@ -27,8 +27,7 @@ def bytes_to_number(bytes_list:list[bytes], weights:list[float]):
             return i
     return len(weights) - 1
 
-def seeds_to_results(server_seed:str, client_seed:str, nonce:int):
-    prizes:list[str] = ['cherry', 'lemon', 'bell', 'clover', 'diamond', 'star', 'caterpillar', 'butterfly', 'angel_butterfly']
+def seeds_to_results(server_seed:str, client_seed:str, nonce:int, prizes:list[str]):
     weights:list[float] = [0.2, 0.18, 0.15, 0.13, 0.12, 0.1, 0.07, 0.045, 0.005]
     
     hexs:list[str] = seeds_to_hexadecimals(server_seed, client_seed, nonce)
@@ -63,12 +62,19 @@ def check_for_wins(rows:list[list[str]]):
         wins.append(rows[0][2])
     return wins
 
+def calculate_wins(wins:list[str], prizes:list[str], bet_amount:int, multipliers:list[float]):
+    if(len(wins)==0):
+        return 0
+    total_winnings:int = 0
+
 st.title("Fluttering Riches - Slot Machine")
 if 'server_seed' not in st.session_state:
     st.session_state.server_seed = generate_seed()
+    st.session_state.server_seed_hashed = sha256_encrypt(st.session_state.server_seed)
     st.session_state.client_seed = generate_seed(20)
+    st.session_state.prizes = ['cherry', 'lemon', 'bell', 'clover', 'diamond', 'star', 'caterpillar', 'butterfly', 'angel_butterfly']
     st.session_state.nonce = 1
-    st.session_state.balance = 10000
+    st.session_state.balance = 10_000
     st.session_state.bet_amount = 200
 
 st.write(f"Credits: {st.session_state.balance}")
@@ -76,12 +82,13 @@ st.write(f"Bet Amount: {st.session_state.bet_amount}")
 if st.button("Spin"):
     if st.session_state.balance >= st.session_state.bet_amount:
         st.session_state.balance -= st.session_state.bet_amount
-        results = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce)
+        results = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce, st.session_state.prizes)
         st.session_state.nonce += 1
         for row in results:
             st.write(" | ".join(row))
         wins = check_for_wins(results)
         if wins:
             st.success(f"You won with: {', '.join(wins)}!")
+            
     else:
         st.error("Insufficient balance!")
