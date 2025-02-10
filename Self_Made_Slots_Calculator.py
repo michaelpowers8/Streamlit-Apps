@@ -147,7 +147,8 @@ if st.button("Spin"):
         st.session_state.results = seeds_to_results(
             st.session_state.server_seed, 
             st.session_state.client_seed, 
-            st.session_state.nonce
+            st.session_state.nonce,
+            st.session_state.prizes
         )  # Store results in session state
         st.session_state.nonce += 1
         wins = check_for_wins(st.session_state.results)
