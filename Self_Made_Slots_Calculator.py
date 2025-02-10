@@ -146,7 +146,6 @@ if st.button("Spin"):
         st.session_state.nonce += 1
         wins = check_for_wins(results)
         if wins:
-            st.success(f"You won with: {', '.join(wins)}!")
             st.session_state.balance += int(calculate_wins(wins,st.session_state.prizes,st.session_state.bet_amount,st.session_state.multipliers))
         update_screen()
             
