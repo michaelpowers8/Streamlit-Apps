@@ -92,9 +92,19 @@ if st.button("Spin"):
         st.session_state.balance -= st.session_state.bet_amount
         results = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce, st.session_state.prizes)
         st.session_state.nonce += 1
-        for row in results:
-            for col in row:
-                st.image(st.session_state.images[st.session_state.prizes.index(col)])
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.image(st.session_state.images[st.session_state.prizes.index(results[0][0])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[1][0])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[2][0])])
+        with col2:
+            st.image(st.session_state.images[st.session_state.prizes.index(results[0][1])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[1][1])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[2][1])])
+        with col3:
+            st.image(st.session_state.images[st.session_state.prizes.index(results[0][2])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[1][2])])
+            st.image(st.session_state.images[st.session_state.prizes.index(results[2][2])])
         wins = check_for_wins(results)
         if wins:
             st.success(f"You won with: {', '.join(wins)}!")
