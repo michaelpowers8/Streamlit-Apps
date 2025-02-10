@@ -28,8 +28,8 @@ def bytes_to_number(bytes_list, weights):
     return len(weights) - 1
 
 def seeds_to_results(server_seed, client_seed, nonce):
-    prizes = ['cherry', 'lemon', 'bell', 'clover', 'diamond', 'star', 'caterpillar', 'butterfly']
-    weights = [0.2, 0.18, 0.15, 0.13, 0.12, 0.1, 0.07, 0.05]
+    prizes = ['cherry', 'lemon', 'bell', 'clover', 'diamond', 'star', 'caterpillar', 'butterfly', 'angel_butterfly']
+    weights = [0.2, 0.18, 0.15, 0.13, 0.12, 0.1, 0.07, 0.045, 0.005]
     hexs = seeds_to_hexadecimals(server_seed, client_seed, nonce)
     bytes_lists = [hexadecimal_to_bytes(h) for h in hexs]
     rows = []
@@ -67,7 +67,6 @@ if st.button("Spin"):
         st.session_state.balance -= st.session_state.bet_amount
         results = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce)
         st.session_state.nonce += 1
-        st.write("Results:")
         for row in results:
             st.write(" | ".join(row))
         wins = check_for_wins(results)
