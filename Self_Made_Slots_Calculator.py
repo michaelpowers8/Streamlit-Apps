@@ -110,6 +110,9 @@ def display_images(results:list[str]):
 
 # Ensure results persist in session state
 if "results" not in st.session_state:
+    st.session_state.server_seed = generate_seed() 
+    st.session_state.client_seed = generate_seed(20)
+    st.session_state.nonce = 1
     st.session_state.results = seeds_to_results(
         st.session_state.server_seed, 
         st.session_state.client_seed, 
