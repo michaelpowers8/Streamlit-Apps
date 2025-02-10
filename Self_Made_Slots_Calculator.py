@@ -132,7 +132,7 @@ if "results" not in st.session_state:
         st.session_state.server_seed, 
         st.session_state.client_seed, 
         st.session_state.nonce,
-        
+        st.session_state.prizes
     )
 
 def update_screen():
