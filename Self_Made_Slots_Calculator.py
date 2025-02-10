@@ -94,7 +94,7 @@ if st.button("Spin"):
         if wins:
             st.success(f"You won with: {', '.join(wins)}!")
             st.session_state.balance += int(calculate_wins(wins,st.session_state.prizes,st.session_state.bet_amount,st.session_state.multipliers))
-            st.write(f"Credits: {st.session_state.balance}")
+        st.write(f"Credits: {st.session_state.balance}")
             
     else:
         st.error("Insufficient balance!")
