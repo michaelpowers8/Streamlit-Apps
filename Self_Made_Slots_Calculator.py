@@ -109,7 +109,6 @@ def display_images(results:list[str]):
         st.image(st.session_state.images[st.session_state.prizes.index(results[2][2])])
 
 def update_screen():
-    st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance, key=generate_seed(1_000))
     display_seed_information()
     display_images(st.session_state.results)  # Use session_state.results
     display_balance()
@@ -147,11 +146,11 @@ if st.button("Spin"):
     if st.session_state.balance >= st.session_state.bet_amount:
         st.session_state.balance -= st.session_state.bet_amount
         st.session_state.results = seeds_to_results(
-            st.session_state.server_seed, 
-            st.session_state.client_seed, 
-            st.session_state.nonce,
-            st.session_state.prizes
-        )
+                st.session_state.server_seed, 
+                st.session_state.client_seed, 
+                st.session_state.nonce,
+                st.session_state.prizes
+            )
         st.session_state.nonce += 1
         wins = check_for_wins(st.session_state.results)
         if wins:
@@ -162,4 +161,5 @@ if st.button("Spin"):
     else:
         st.error("Insufficient balance!")
 
-#update_screen()  # Ensure UI updates correctly
+st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance, key='bet_amount')
+update_screen()  # Ensure UI updates correctly
