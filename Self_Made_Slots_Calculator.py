@@ -89,7 +89,7 @@ def display_seed_information():
         """, unsafe_allow_html=True)
 
     # Apply the custom CSS class to your subheader
-    st.markdown(f'''<p class="server-seed-hashed">Server Seed (Hashed): {st.session_state.server_seed_hashed}</p>''', unsafe_allow_html=True)
+    st.markdown(f'''<p class="server-seed-hashed">Server Seed (Hashed): {st.session_state.server_seed_hashed}\n</p>''', unsafe_allow_html=True)
     st.markdown(f'''<p class="client-seed">Client Seed: {st.session_state.client_seed}</p>''', unsafe_allow_html=True)
     st.markdown(f'''<p class="nonce">Nonce: {st.session_state.nonce}</p>''', unsafe_allow_html=True)
     
@@ -135,6 +135,7 @@ if 'server_seed' not in st.session_state:
     st.session_state.bet_amount = 0
     results:list[list[str]] = seeds_to_results(st.session_state.server_seed, st.session_state.client_seed, st.session_state.nonce, st.session_state.prizes)
     st.session_state.nonce += 1
+    st.button("Spin")
     update_screen()
     
 
