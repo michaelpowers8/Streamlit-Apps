@@ -136,6 +136,7 @@ if "results" not in st.session_state:
     st.session_state.nonce += 1
 
 def update_screen():
+    st.header("Fluttering Riches - Slot Machine")
     st.session_state.bet_amount = st.number_input("Bet Amount:", min_value=0, max_value=st.session_state.balance, key=generate_seed(1_000))
     display_seed_information()
     display_images(st.session_state.results)  # Use session_state.results
