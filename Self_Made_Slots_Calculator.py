@@ -76,9 +76,22 @@ def display_balance():
     st.write(f"Bet Amount: {st.session_state.bet_amount}")
     
 def display_seed_information():
-    st.subheader(f"Server Seed (Hashed): {st.session_state.server_seed_hashed}")
-    st.subheader(f"Client Seed: {st.session_state.client_seed}")
-    st.subheader(f"Nonce: {st.session_state.nonce}")
+    # Custom CSS for the subheader
+    st.markdown("""
+            <style>
+            .custom-subheader {
+                font-size: 24px; /* Change this value to customize the size */
+                font-weight: bold; /* Change this to 'normal' if you don't want bold */
+                color: #ff5733; /* Change this value to customize the color */
+                white-space: nowrap; /* Prevent word wrap */
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
+    # Apply the custom CSS class to your subheader
+    st.markdown(f'''<p class="server-seed-hashed">Server Seed (Hashed): {st.session_state.server_seed_hashed}</p>''', unsafe_allow_html=True)
+    st.subheader(f'''<p class="client-seed">Client Seed: {st.session_state.client_seed}</p>''', unsafe_allow_html=True)
+    st.subheader(f'''<p class="nonce">Nonce: {st.session_state.nonce}</p>''', unsafe_allow_html=True)
     
 def display_images(results:list[str]):
     col1, col2, col3 = st.columns(3)
