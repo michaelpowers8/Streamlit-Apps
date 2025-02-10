@@ -127,7 +127,6 @@ if "results" not in st.session_state:
     st.session_state.multipliers = [1.3, 2.25, 3.00, 5.00, 10.0, 25.0,  50.0, 125.0, 5000]
     st.session_state.nonce = 0
     st.session_state.balance = 10_000
-    st.session_state.bet_amount = 0
     st.session_state.results = seeds_to_results(
         st.session_state.server_seed, 
         st.session_state.client_seed, 
