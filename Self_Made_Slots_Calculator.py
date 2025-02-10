@@ -150,14 +150,15 @@ if st.button("Spin"):
             st.session_state.client_seed, 
             st.session_state.nonce,
             st.session_state.prizes
-        )  # Store results in session state
+        )
         st.session_state.nonce += 1
         wins = check_for_wins(st.session_state.results)
         if wins:
             st.session_state.balance += int(
                 calculate_wins(wins, st.session_state.prizes, st.session_state.bet_amount, st.session_state.multipliers)
             )
+        update_screen()
     else:
         st.error("Insufficient balance!")
 
-update_screen()  # Ensure UI updates correctly
+#update_screen()  # Ensure UI updates correctly
