@@ -90,8 +90,8 @@ def display_seed_information():
 
     # Apply the custom CSS class to your subheader
     st.markdown(f'''<p class="server-seed-hashed">Server Seed (Hashed): {st.session_state.server_seed_hashed}</p>''', unsafe_allow_html=True)
-    st.subheader(f'''<p class="client-seed">Client Seed: {st.session_state.client_seed}</p>''', unsafe_allow_html=True)
-    st.subheader(f'''<p class="nonce">Nonce: {st.session_state.nonce}</p>''', unsafe_allow_html=True)
+    st.markdown(f'''<p class="client-seed">Client Seed: {st.session_state.client_seed}</p>''', unsafe_allow_html=True)
+    st.markdown(f'''<p class="nonce">Nonce: {st.session_state.nonce}</p>''', unsafe_allow_html=True)
     
 def display_images(results:list[str]):
     col1, col2, col3 = st.columns(3)
