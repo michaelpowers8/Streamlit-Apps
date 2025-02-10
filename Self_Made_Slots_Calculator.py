@@ -157,7 +157,6 @@ if st.button("Spin"):
             st.session_state.balance += int(
                 calculate_wins(wins, st.session_state.prizes, st.session_state.bet_amount, st.session_state.multipliers)
             )
-        update_screen()
     else:
         st.error("Insufficient balance!")
 
