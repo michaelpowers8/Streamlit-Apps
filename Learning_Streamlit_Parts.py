@@ -22,9 +22,11 @@ st.checkbox("Checkbox")
 
 #st.download_button("Download",random_array.rand(3,2),"Download_Data.csv",mime='text/csv')
 
-uploaded_file = st.file_uploader("Choose a file",accept_multiple_files=True)
+uploaded_file = st.file_uploader("Choose a file",accept_multiple_files=False)
 
 st.html("<h1>Cheers HTML</h1>")
+
+st.image()
 
 progress_text:str = "Operation in progress. Please wait."
 my_bar = st.progress(0, text=progress_text)
