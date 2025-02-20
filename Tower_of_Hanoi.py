@@ -78,19 +78,19 @@ def animate_move(state: dict, disk: int, source: str, destination: str, num_disk
     for y in np.linspace(start_y, top_y, frames_up):
         fig = draw_towers(state, num_disks, moving_disk=disk, moving_disk_pos=(start_x, y))
         animation_placeholder.pyplot(fig)
-        time.sleep(0.03)
+        time.sleep(0.1)
 
     # Phase 2: Move horizontally
     for x in np.linspace(start_x, end_x, frames_horizontal):
         fig = draw_towers(state, num_disks, moving_disk=disk, moving_disk_pos=(x, top_y))
         animation_placeholder.pyplot(fig)
-        time.sleep(0.03)
+        time.sleep(0.1)
 
     # Phase 3: Move down
     for y in np.linspace(top_y, final_y, frames_down):
         fig = draw_towers(state, num_disks, moving_disk=disk, moving_disk_pos=(end_x, y))
         animation_placeholder.pyplot(fig)
-        time.sleep(0.03)
+        time.sleep(0.1)
 
     # Ensure disk is shown at the final position immediately
     state[destination].append(disk)
@@ -133,7 +133,7 @@ def main():
             source, dest = move
             disk = state[source].pop()
             animate_move(state, disk, source, dest, num_disks, animation_placeholder)
-            time.sleep(0.03)
+            time.sleep(0.1)
 
         fig = draw_towers(state, num_disks)
         animation_placeholder.pyplot(fig)
