@@ -98,7 +98,7 @@ def animate_move(state: dict, disk: int, source: str, destination: str, num_disk
     animation_placeholder.pyplot(fig)
 
 def main():
-    st.title("Tower of Hanoi Animation (Smooth)")
+    st.title("Tower of Hanoi Animation")
     st.write("Watch the disks slide smoothly between towers.")
 
     num_disks = st.slider("Select the number of disks", min_value=1, max_value=8, value=3)
