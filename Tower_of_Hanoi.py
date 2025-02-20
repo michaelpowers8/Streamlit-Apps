@@ -160,6 +160,9 @@ def main():
     if st.button("Start Animation"):
         # Animate each move
         for i, move in enumerate(moves):
+            # Update sidebar highlighting the current move.
+            sidebar_placeholder.markdown(render_moves(moves, current_move_index=i))
+            time.sleep(0.05)
             source, dest = move
             # Pop the top disk from the source peg.
             disk = state[source].pop()
@@ -167,9 +170,7 @@ def main():
             animate_move(state, disk, source, dest, num_disks, animation_placeholder)
             # After animation, append the disk to the destination peg.
             state[dest].append(disk)
-            # Update sidebar highlighting the current move.
-            sidebar_placeholder.markdown(render_moves(moves, current_move_index=i))
-            time.sleep(0.5)
+            
         
         # Final update to show completed state.
         fig = draw_towers(state, num_disks)
