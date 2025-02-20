@@ -101,7 +101,7 @@ def main():
     st.title("Tower of Hanoi Animation")
     st.write("Watch the disks slide smoothly between towers.")
 
-    num_disks = st.slider("Select the number of disks", min_value=1, max_value=32, value=3)
+    num_disks = st.slider("Select the number of disks", min_value=1, max_value=9, value=3)
     moves = tower_of_hanoi(num_disks)
 
     state = {
