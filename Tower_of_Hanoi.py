@@ -70,9 +70,9 @@ def animate_move(state: dict, disk: int, source: str, destination: str, num_disk
     end_x = peg_positions[destination]
     top_y = 5
 
-    frames_up = 8
+    frames_up = 6
     frames_horizontal = 8
-    frames_down = 8
+    frames_down = 6
 
     # Phase 1: Move up
     for y in np.linspace(start_y, top_y, frames_up):
@@ -96,6 +96,8 @@ def animate_move(state: dict, disk: int, source: str, destination: str, num_disk
     state[destination].append(disk)
     fig = draw_towers(state, num_disks)
     animation_placeholder.pyplot(fig)
+    plt.close(fig)
+
 
 def main():
     st.title("Tower of Hanoi Animation")
