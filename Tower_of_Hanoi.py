@@ -141,7 +141,7 @@ def main():
     animation_placeholder = st.empty()
     sidebar_placeholder = st.sidebar.empty()
     
-    # Render the full moves list in the sidebar.
+    # Render the full moves list in the sidebar
     def render_moves(moves, current_move_index=-1):
         out = "### Moves List\n"
         for i, move in enumerate(moves):
