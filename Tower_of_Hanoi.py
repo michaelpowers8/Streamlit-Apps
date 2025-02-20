@@ -70,9 +70,9 @@ def animate_move(state: dict, disk: int, source: str, destination: str, num_disk
     end_x = peg_positions[destination]
     top_y = 5
 
-    frames_up = 30
-    frames_horizontal = 20
-    frames_down = 30
+    frames_up = 10
+    frames_horizontal = 10
+    frames_down = 10
 
     # Phase 1: Move up
     for y in np.linspace(start_y, top_y, frames_up):
